@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
 import { CustomerService } from '../../services/customer-service';
-import { CustomerRequest } from '../../models/customerRequest';
+import { CustomerRequest } from '../../models/customerRequest.model';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-customer-component',
-  imports: [FormsModule, ReactiveFormsModule, JsonPipe],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './new-customer-component.html',
   styleUrl: './new-customer-component.css',
 })

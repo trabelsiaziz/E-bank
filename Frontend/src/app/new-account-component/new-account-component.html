@@ -1,64 +1,116 @@
 <div class="container">
-  <h1>Payment Details</h1>
+  <h1>Create New Bank Account</h1>
 
-  <div class="section">
-    <div class="section-title">Contact Information</div>
-    <div class="grid">
-      <div class="input-group">
-        <label>Email</label>
-        <input type="email" value="person@mail.com" />
-      </div>
-      <div class="input-group">
-        <label>Name</label>
-        <input type="text" value="John Doe" />
+  <form [formGroup]="accountForm">
+    <div class="section">
+      <div class="section-title">Account Information</div>
+      <div class="grid">
+        <div class="input-group">
+          <label for="customerId">Customer ID</label>
+          <input
+            type="number"
+            id="customerId"
+            name="customerId"
+            placeholder="Enter customer ID"
+            required
+            formControlName="customerId"
+          />
+        </div>
+        <div class="input-group">
+          <label for="initialBalance">Initial Balance</label>
+          <input
+            type="number"
+            id="initialBalance"
+            name="initialBalance"
+            step="0.01"
+            placeholder="0.00"
+            required
+            formControlName="initialBalance"
+          />
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="section">
-    <div class="section-title">Select Plans</div>
-    <div class="plans">
-      <div class="plan">
-        <div class="plan-badge badge-soft">One-time</div>
-        <div class="plan-icon">💸</div>
-        <div class="plan-title">One-Time Payment</div>
-        <div class="plan-desc">Charge users a one-time payment fee to access the content</div>
-      </div>
-      <div class="plan selected">
+    <!-- <div class="section">
+      <div class="section-title">Account Type</div>
+      <div class="plans">
+      <label class="plan selected">
+        <input type="radio" name="accountType" value="CURRENT" formControlName="accountType" />
+        <div class="plan-badge badge-soft">Standard</div>
+        <div class="plan-icon">💳</div>
+        <div class="plan-title">Current Account</div>
+        <div class="plan-desc">Standard current account for daily transactions</div>
+      </label>
+      <label class="plan ">
+        <input type="radio" name="accountType" value="SAVINGS" checked formControlName="accountType" />
         <div class="plan-badge badge-primary">Popular</div>
-        <div class="plan-icon">⚡</div>
-        <div class="plan-title">Membership</div>
-        <div class="plan-desc">Split the full bundle price over several monthly payments</div>
+        <div class="plan-icon">💰</div>
+        <div class="plan-title">Savings Account</div>
+        <div class="plan-desc">Earn interest on your deposits with flexible access</div>
+      </label>
+      </div>
+    </div> -->
+
+    <div class="section">
+      <div class="section-title">Account Type</div>
+      <div class="plans">
+        <!-- Option 1 -->
+        <label class="plan">
+          <input type="radio" name="accountType" value="CURRENT_ACCOUNT" formControlName="accountType" />
+          <div class="plan-badge badge-soft">Standard</div>
+          <div class="plan-icon">💳</div>
+          <div class="plan-title">Current Account</div>
+          <div class="plan-desc">Daily transactions</div>
+        </label>
+
+        <!-- Option 2 -->
+        <label class="plan">
+          <input type="radio" name="accountType" value="SAVING_ACCOUNT" formControlName="accountType" />
+          <div class="plan-badge badge-primary">Popular</div>
+          <div class="plan-icon">💰</div>
+          <div class="plan-title">Savings Account</div>
+          <div class="plan-desc">Earn interest</div>
+        </label>
       </div>
     </div>
-  </div>
 
-  <div class="section">
-    <div class="section-title">Amount Submission</div>
-    <div class="amount-grid">
-      <div class="input-group">
-        <label>Amount</label>
-        <input type="text" value="$ 4305.3223" />
+    <div class="section">
+      <div class="section-title">Account Details</div>
+      <div class="amount-grid">
+        <div class="input-group">
+          <label for="accountStatus">Account Status</label>
+          <select id="accountStatus" name="accountStatus" formControlName="accountStatus">
+            <option value="CREATED">Created</option>
+            <option value="ACTIVATED" selected>Activated</option>
+            <option value="SUSPENDED">Suspended</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="creationDate">Creation Date</label>
+          <input type="date" id="creationDate" name="creationDate" required formControlName="creationDate" />
+        </div>
       </div>
-      <div class="input-group">
-        <label>Beneficiary</label>
-        <input type="text" value="John Doe" />
+      <div class="company input-group">
+        <label for="extraInfo">Extra Information</label>
+        <input
+          type="number"
+          id="extraInfo"
+          name="extraInfo"
+          step="0.01"
+          placeholder="Additional charges or fees"
+        />
+      </div>
+      <div class="note">
+        New accounts will be reviewed and activated within 24 hours. Initial deposits are secured
+        and insured.
       </div>
     </div>
-    <div class="company input-group">
-      <label>Company Name</label>
-      <input type="text" value="Priztel Pvt Limited" />
-    </div>
-    <div class="note">
-      Incoming payments are placed in a secure receiving account to keep the destination account
-      anonymously
-    </div>
-  </div>
 
-  <div class="expiration">Payment link expires on December 11, 2023</div>
+    <div class="expiration">Account activation typically completes within 1 business day</div>
 
-  <div class="buttons">
-    <button class="cancel">Cancel</button>
-    <button class="request">Request Payment</button>
-  </div>
+    <div class="buttons">
+      <button type="button" class="cancel">Cancel</button>
+      <button type="submit" class="request" (click)="createAccount()">Create Account</button>
+    </div>
+  </form>
 </div>

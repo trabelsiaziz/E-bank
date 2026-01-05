@@ -2,13 +2,11 @@ package org.aziz.ebank.controllers;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.aziz.ebank.DTOs.BankAccountRequest;
 import org.aziz.ebank.DTOs.BankAccountResponse;
 import org.aziz.ebank.services.BankAccountService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +27,15 @@ public class BankAccountController {
     @GetMapping
     public ResponseEntity<List<BankAccountResponse>> getAllBankAccounts() {
         return ResponseEntity.ok(bankAccountService.getAllBankAccounts());
+    }
+
+
+    @PostMapping
+    public ResponseEntity<BankAccountResponse> createBankAccount(
+            @RequestBody BankAccountRequest bankAccountRequest
+    ) {
+        BankAccountResponse createdAccount = bankAccountService.createBankAccount(bankAccountRequest);
+        return ResponseEntity.ok(createdAccount);
     }
 
 

@@ -42,11 +42,19 @@ label {
   color: #6e6e73;
   margin-bottom: 5px;
 }
-input {
+input,
+select {
   padding: 12px 16px;
   border: 1px solid #d2d2d7;
   border-radius: 12px;
   font-size: 16px;
+  background-color: white;
+  transition: border-color 0.2s ease;
+}
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #007aff;
 }
 .plans {
   display: grid;
@@ -153,6 +161,10 @@ button {
   transform: translateY(-3px);
   box-shadow: 0 16px 40px rgba(0, 110, 255, 0.22);
 }
+.cancel:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 110, 255, 0.22);
+}
 
 @media (max-width: 640px) {
   .grid,
@@ -164,4 +176,33 @@ button {
     padding: 20px;
     border-radius: 12px;
   }
+}
+
+/* Hide the ugly default radio button */
+.plan input[type='radio'] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Default state of the card */
+.plan {
+  border: 2px solid #eee;
+  padding: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* THE MAGIC: When input is checked, style the parent .plan */
+.plan:has(input:checked) {
+  border-color: blue;
+  background-color: #f0f8ff;
+  transform: scale(1.02);
+}
+
+/* Optional: Change badge color when selected */
+.plan:has(input:checked) .plan-badge {
+  background-color: blue;
+  color: white;
 }

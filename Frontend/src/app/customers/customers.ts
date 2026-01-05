@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../services/customer-service';
-import { catchError, EMPTY, Observable, throwError } from 'rxjs';
+import { catchError, EMPTY, Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Customer } from '../../models/customer.model';
+import { CustomerResponse } from '../../models/customerResponse.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class Customers implements OnInit {
   columns: String[] = ['Id', 'Name', 'Email'];
-  data$!: Observable<Array<Customer>>;
+  data$!: Observable<Array<CustomerResponse>>;
   errorMessage: string | null = null;
   keyword: string = '';
 

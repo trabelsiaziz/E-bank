@@ -11,4 +11,6 @@ public interface BankAccountService {
     public Void deleteBankAccountById(String id);
     public List<BankAccountResponse>getAllBankAccounts();
     public BankAccountResponse getBankAccountById(String id);
+
+    BankAccountResponse createBankAccount(BankAccountRequest bankAccountRequest);
 }

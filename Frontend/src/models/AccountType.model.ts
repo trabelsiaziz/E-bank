@@ -1,0 +1,4 @@
+export enum AccountType {
+    SAVING_ACCOUNT = 'SAVING_ACCOUNT',
+    CURRENT_ACCOUNT = 'CURRENT_ACCOUNT',
+}

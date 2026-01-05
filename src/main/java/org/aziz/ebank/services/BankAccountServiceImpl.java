@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aziz.ebank.DTOs.BankAccountRequest;
 import org.aziz.ebank.DTOs.BankAccountResponse;
+import org.aziz.ebank.entities.BankAccount;
 import org.aziz.ebank.mappers.BankAccountMapper;
 import org.aziz.ebank.repositories.BankAccountRepository;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,13 @@ public class BankAccountServiceImpl implements BankAccountService{
         return bankAccountMapper.toBankAccountResponse(
                 bankAccountRepository.findById(id).orElseThrow(()-> new RuntimeException("Bank account not found"))
         );
+    }
+
+    @Override
+    public BankAccountResponse createBankAccount(BankAccountRequest bankAccountRequest) {
+        BankAccount bankAccount = bankAccountRepository.save(bankAccountMapper.fromBankAccountRequest(bankAccountRequest));
+        return bankAccountMapper.toBankAccountResponse(bankAccount);
+
     }
 
 }

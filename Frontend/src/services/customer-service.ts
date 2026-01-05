@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment.development';
 import { Observable } from 'rxjs';
-import { Customer } from '../models/customer.model';
-import { CustomerRequest } from '../models/customerRequest';
+import { CustomerResponse } from '../models/customerResponse.model';
+import { CustomerRequest } from '../models/customerRequest.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,14 +11,14 @@ import { CustomerRequest } from '../models/customerRequest';
 export class CustomerService {
   constructor(private http: HttpClient) {}
 
-  getAllCustomers(): Observable<Array<Customer>> {
-    return this.http.get<Array<Customer>>(environment.BACKEND_BASE_URL + '/api/customers');
+  getAllCustomers(): Observable<Array<CustomerResponse>> {
+    return this.http.get<Array<CustomerResponse>>(environment.BACKEND_BASE_URL + '/api/customers');
   }
-  filterCustomers(keyword: string): Observable<Array<Customer>> {
-    return this.http.get<Array<Customer>>(`${environment.BACKEND_BASE_URL}/api/customers/search?keyword=${keyword}`);
+  filterCustomers(keyword: string): Observable<Array<CustomerResponse>> {
+    return this.http.get<Array<CustomerResponse>>(`${environment.BACKEND_BASE_URL}/api/customers/search?keyword=${keyword}`);
   }
-  createCustomer(customerRequest: CustomerRequest): Observable<Customer> {
-    return this.http.post<Customer>(`${environment.BACKEND_BASE_URL}/api/customers`, customerRequest);
+  createCustomer(customerRequest: CustomerRequest): Observable<CustomerResponse> {
+    return this.http.post<CustomerResponse>(`${environment.BACKEND_BASE_URL}/api/customers`, customerRequest);
   }
 
   deleteCustomer(id: number): Observable<void> {
