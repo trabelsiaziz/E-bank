@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public void DeleteCustomerById(Long customerId) {
-
+        customerRepository.deleteById(customerId);
     }
 
     @Override
@@ -43,5 +43,20 @@ public class CustomerServiceImpl implements CustomerService{
                 .stream()
                 .map(customerMapper::toCustomerResponse)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CustomerResponse> searchCustomers(String keyword) {
+        return customerRepository
+                .searchCustomers(keyword)
+                .stream()
+                .map(customerMapper::toCustomerResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public CustomerResponse createCustomer(CustomerRequest customerRequest) {
+        Customer customer = customerRepository.save(customerMapper.fromCustomerRequest(customerRequest));
+        return customerMapper.toCustomerResponse(customer);
     }
 }

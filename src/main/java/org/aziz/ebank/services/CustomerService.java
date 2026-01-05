@@ -11,4 +11,8 @@ public interface CustomerService {
     public void DeleteCustomerById(Long customerId);
     public CustomerResponse getCustomerById(Long customerId);
     public List<CustomerResponse> getAllCustomers();
+
+    List<CustomerResponse> searchCustomers(String keyword);
+
+    CustomerResponse createCustomer(CustomerRequest customerRequest);
 }

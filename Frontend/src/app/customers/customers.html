@@ -1,0 +1,83 @@
+<div class="container mt-4">
+
+  <!-- ERROR -->
+  <ng-container *ngIf="errorMessage; else dataOrLoading">
+    <div class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  </ng-container>
+
+  <!-- DATA OR LOADING -->
+  <ng-template #dataOrLoading>
+
+    <ng-container *ngIf="data$ | async as data; else loading">
+
+      <div class="card shadow-sm">
+        <div
+          class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
+        >
+          <h5 class="mb-0">Customer Management</h5>
+
+          <div class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              placeholder="Search"
+              [(ngModel)]="keyword"
+            />
+            <button
+              type="button"
+              class="btn btn-outline-info"
+              (click)="filterCustomers()"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+
+        <!-- EMPTY STATE -->
+        <div *ngIf="data.length === 0" class="alert alert-info m-3">
+          No customers found
+        </div>
+
+        <!-- TABLE -->
+        <div *ngIf="data.length > 0" class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th *ngFor="let col of columns">
+                    {{ col }}
+                  </th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of data; trackBy: trackById">
+                  <td class="fw-bold">{{ item.id }}</td>
+                  <td>{{ item.name }}</td>
+                  <td class="text-muted">{{ item.email }}</td>
+                  <td>
+                    <button class="btn btn-danger" (click)="deleteCustomer(item.id)">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </ng-container>
+
+    <!-- LOADING -->
+    <ng-template #loading>
+      <div class="d-flex justify-content-center my-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </ng-template>
+
+  </ng-template>
+
+</div>

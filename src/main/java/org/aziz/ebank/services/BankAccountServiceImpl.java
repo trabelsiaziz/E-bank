@@ -23,7 +23,7 @@ public class BankAccountServiceImpl implements BankAccountService{
 
     @Override
     public BankAccountResponse saveBankAccount(BankAccountRequest bankAccountRequest) {
-//        log.info("Saving new bank account");
+
         bankAccountRepository.save(
                 bankAccountMapper.fromBankAccountRequest(bankAccountRequest)
         );

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aziz.ebank.DTOs.BankAccountResponse;
 import org.aziz.ebank.services.BankAccountService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequestMapping("/api/BankAccounts")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin("*")
 public class BankAccountController {
 
     private final BankAccountService bankAccountService;
@@ -28,5 +30,6 @@ public class BankAccountController {
     public ResponseEntity<List<BankAccountResponse>> getAllBankAccounts() {
         return ResponseEntity.ok(bankAccountService.getAllBankAccounts());
     }
+
 
 }
